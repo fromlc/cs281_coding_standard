@@ -15,6 +15,7 @@ public:
 	// constructor, destructor, member functions go here
 	Validate();
 	int getValidatedInt();
+	bool getStatusOK();
 };
 #endif	// VALIDATE_H
 

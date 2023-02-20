@@ -82,7 +82,7 @@ int main() {
 	// display banner, do any needed initialization
 	initApp();
 
-	// Get user's name
+	// when it's obvious, you don't need a comment
 	string username;
 	getName(username);
 

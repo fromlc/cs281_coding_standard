@@ -34,3 +34,9 @@ int Validate::getValidatedInt() {
 	statusOK = n ? true : false;
 	return (int) n;
 }
+
+//------------------------------------------------------------------------------
+// returns true when no errors, false otherwise
+//------------------------------------------------------------------------------
+bool Validate::getStatusOK() { return statusOK; }
+
