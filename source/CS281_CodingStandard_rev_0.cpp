@@ -38,8 +38,11 @@ bool IsOldEnough(int user_age);
 * 3) Use the code structure in this file to put all code in its proper place
 *		The line comments tell you what goes where.
 * 
-* 4) Your code should use 4 spaces of indentation at each level. In VS, click
-*		Analyze, Code Cleanup, Run Code Cleanup (Profile 1) on Solution
+* 4) Your code should use 4 spaces of indentation at each level. VS helps!
+*   	In VS, click Analyze, Code Cleanup, Run Code Cleanup (Profile 1)
+*			on Solution.
+*	    Or, click Edit, Advanced, Format Document. 
+*			This only fixes indentation.
 * 
 * 5) Use meaningful variable names that start with a lower-case letter.
 * 
@@ -77,8 +80,8 @@ int main()
 	else
 		cout << "Sorry! You're not yet old enough to ";
 
-	// ..in whatever activity
-	cout << ACTIVITY_STR << endl;
+	// ..in whatever activity, then flush output buffer with endl
+	cout << ACTIVITY_STR << '.' << endl;
 
 	// Prevent console window from closing
 	cin.get();
