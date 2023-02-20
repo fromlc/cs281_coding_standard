@@ -20,6 +20,10 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="source\CS281_CodingStandard_rev_0.cpp" />
+    <ClCompile Include="source\Validate.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\Validate.h" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>16.0</VCProjectVersion>

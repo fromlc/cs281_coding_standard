@@ -9,15 +9,15 @@
 // - Participation requires the user be at least MINIMUM_AGE old.
 //------------------------------------------------------------------------------
 
-// If you use local #include's they go here, for example:
-//#include "Rectangle.h"
-//#include "util.h"
+// local #include's go before system #include's
+#include "Validate.h"
 
+// system #include's
 #include <iostream>
 #include <string>
 
 // Use individual names instead of using namespace std.
-// I like mine in alphabetical order.
+// I like mine in alphabetical order - OCD but easy to spot problems.
 
 //------------------------------------------------------------------------------
 // using symbols 
@@ -35,9 +35,21 @@ constexpr int MINIMUM_AGE = 18;			// use UPPERCASE names for constants
 const string ACTIVITY_STR = "vote";
 
 //------------------------------------------------------------------------------
+// globals 
+//------------------------------------------------------------------------------
+// use globals when you just need one and no data corruption is possible!
+// use a naming convention to indicate a global variable, I use g_
+Validate g_v;
+
+//------------------------------------------------------------------------------
 // local function prototypes
 //------------------------------------------------------------------------------
-bool IsOldEnough(int);					// just use the parameter type
+// use single-purpose functions to keep main() simple
+void initApp();
+void getName(string& name);
+int getAge();
+bool IsOldEnough(int);				// just use the parameter type
+void displayResults(string&, int);	// pass strings by reference when possible
 
 // Use block comments like this to explain the code:
 //------------------------------------------------------------------------------
@@ -65,31 +77,18 @@ bool IsOldEnough(int);					// just use the parameter type
 //------------------------------------------------------------------------------
 // entry point
 //------------------------------------------------------------------------------
-int main()
-{
-	// Initialize variables to known, recognizable values
-	string username = "Codezilla";
-	int age = 999;
+int main() {
 
-	// Get user's one-word name
-	cout << "What's your name? ";
-	cin >> username;
+	// display banner, do any needed initialization
+	initApp();
 
-	// Get user's age as an integer or float
-	cout << "How old are you? ";
-	cin >> age;
+	// Get user's name
+	string username;
+	getName(username);
 
-	// Display user's reported name and age, don't flush the output buffer yet
-	cout << "Hi " << username << ", you're " << age << " years old.\n";
-
-	// Display whether user is allowed to participate..
-	if (IsOldEnough(age))
-		cout << "Congratulations! You're old enough to ";
-	else
-		cout << "Sorry! You're not old enough to ";
-
-	// ..in whatever activity, then flush output buffer with endl
-	cout << ACTIVITY_STR << '.' << endl;
+	int age = getAge();
+	
+	displayResults(username, age);
 
 	// Keep console window open until user types a key
 	cin.get();
@@ -101,16 +100,63 @@ int main()
 // Local functions go after main()
 
 //------------------------------------------------------------------------------
-// bool IsOldEnough()
-//
+// app initialization tasks
+//------------------------------------------------------------------------------
+void initApp() {
+	cout << "\nAre you old enough to " << ACTIVITY_STR << "?\n";
+}
+
+//------------------------------------------------------------------------------
+// returns user's one-word name in reference parameter name
+//------------------------------------------------------------------------------
+void getName(string& name) {
+	cout << "\nWhat's your name? ";
+	cin >> name;
+}
+
+//------------------------------------------------------------------------------
 // returns true if passed user_age is at least MINIMUM_AGE, false otherwise.
 //------------------------------------------------------------------------------
-bool IsOldEnough(int user_age)
-{
+bool IsOldEnough(int user_age) {
+
 	if (user_age >= MINIMUM_AGE)
 		return true;
 
 	return false;
 }
 
+//------------------------------------------------------------------------------
+// returns validated positive int
+//------------------------------------------------------------------------------
+int getAge() {
+	cout << "How old are you? ";
+	return g_v.getValidatedInt();
+}
+
+//------------------------------------------------------------------------------
+// app output
+//------------------------------------------------------------------------------
+void displayResults(string& name, int age) {
+
+	// Display user's reported name and age
+	cout << "\nHi " << name << ", you're ";
+	
+	// Display whether user is allowed to participate..
+	if (age <= 0) {
+		cout << "unborn! Sorry, the unborn can't ";
+	}
+	else {
+		cout << age << " years old.\n";
+
+		if (IsOldEnough(age)) {
+			cout << "Congratulations! You're old enough to ";
+		}
+		else {
+			cout << "Sorry! You're not old enough to ";
+		}
+	}
+
+	// ..in whatever activity, then flush input/output buffer with endl
+	cout << ACTIVITY_STR << '.' << endl;
+}
 
