@@ -46,7 +46,7 @@ Validate g_v;
 //------------------------------------------------------------------------------
 // use single-purpose functions to keep main() simple
 void initApp();
-void getName(string& name);
+void getName(string&);
 int getAge();
 bool IsOldEnough(int);				// just use the parameter type
 void displayResults(string&, int);	// pass strings by reference when possible
@@ -79,22 +79,22 @@ void displayResults(string&, int);	// pass strings by reference when possible
 //------------------------------------------------------------------------------
 int main() {
 
-	// display banner, do any needed initialization
-	initApp();
+    // display banner, do any needed initialization
+    initApp();
 
-	// when it's obvious, you don't need a comment
-	string username;
-	getName(username);
+    // when it's obvious, you don't need a comment
+    string username;
+    getName(username);
 
-	int age = getAge();
-	
-	displayResults(username, age);
+    int age = getAge();
 
-	// Keep console window open until user types a key
-	cin.get();
+    displayResults(username, age);
 
-	// returning an error code from main() is a best practice
-	return 0;
+    // Keep console window open until user types a key
+    cin.get();
+
+    // returning an error code from main() is a best practice
+    return 0;
 }
 
 // Local functions go after main()
@@ -103,15 +103,15 @@ int main() {
 // app initialization tasks
 //------------------------------------------------------------------------------
 void initApp() {
-	cout << "\nAre you old enough to " << ACTIVITY_STR << "?\n";
+    cout << "\nAre you old enough to " << ACTIVITY_STR << "?\n";
 }
 
 //------------------------------------------------------------------------------
 // returns user's one-word name in reference parameter name
 //------------------------------------------------------------------------------
 void getName(string& name) {
-	cout << "\nWhat's your name? ";
-	cin >> name;
+    cout << "\nWhat's your name? ";
+    cin >> name;
 }
 
 //------------------------------------------------------------------------------
@@ -119,24 +119,24 @@ void getName(string& name) {
 //------------------------------------------------------------------------------
 bool IsOldEnough(int user_age) {
 
-	if (user_age >= MINIMUM_AGE)
-		return true;
+    if (user_age >= MINIMUM_AGE)
+        return true;
 
-	return false;
+    return false;
 }
 
 //------------------------------------------------------------------------------
 // returns validated positive int
 //------------------------------------------------------------------------------
 int getAge() {
-	cout << "How old are you? ";
+    cout << "How old are you? ";
 
-	int age;
-	while (!g_v.getValidatedInt(age)) {
-		cout << "Please enter your age as a number: ";
-	}
+    int age;
+    while (!g_v.getValidatedInt(age)) {
+        cout << "Please enter your age as a number: ";
+    }
 
-	return age;
+    return age;
 
 }
 
@@ -145,25 +145,25 @@ int getAge() {
 //------------------------------------------------------------------------------
 void displayResults(string& name, int age) {
 
-	// Display user's reported name and age
-	cout << "\nHi " << name << ", you're ";
-	
-	// Display whether user is allowed to participate..
-	if (age <= 0) {
-		cout << "unborn! Sorry, the unborn can't ";
-	}
-	else {
-		cout << age << " years old.\n";
+    // Display user's reported name and age
+    cout << "\nHi " << name << ", you're ";
 
-		if (IsOldEnough(age)) {
-			cout << "Congratulations! You're old enough to ";
-		}
-		else {
-			cout << "Sorry! You're not old enough to ";
-		}
-	}
+    // Display whether user is allowed to participate..
+    if (age <= 0) {
+        cout << "unborn! Sorry, the unborn can't ";
+    }
+    else {
+        cout << age << " years old.\n";
 
-	// ..in whatever activity, then flush input/output buffer with endl
-	cout << ACTIVITY_STR << '.' << endl;
+        if (IsOldEnough(age)) {
+            cout << "Congratulations! You're old enough to ";
+        }
+        else {
+            cout << "Sorry! You're not old enough to ";
+        }
+    }
+
+    // ..in whatever activity, then flush input/output buffer with endl
+    cout << ACTIVITY_STR << '.' << endl;
 }
 
