@@ -18,25 +18,21 @@ using std::string;
 //------------------------------------------------------------------------------
 // constructor
 //------------------------------------------------------------------------------
-Validate::Validate() { statusOK = true; }
+Validate::Validate() { }
 
 //------------------------------------------------------------------------------
-// returns integer, or 0
+// - stores numeric input value in reference param, or 0 on failed conversion
+// - returns true on numeric input, false otherwise
 //------------------------------------------------------------------------------
-int Validate::getValidatedInt() {
+bool Validate::getValidatedInt(int& n) {
 
 	string s;
 	cin >> s;
 
-	// returns 0 on invalid input
-	long n = strtol(s.c_str(), nullptr, 0);
-	
-	statusOK = n ? true : false;
-	return (int) n;
-}
+	// strtol() returns 0 on failed conversion to number
+	n = (int) strtol(s.c_str(), nullptr, 0);
 
-//------------------------------------------------------------------------------
-// returns true when no errors, false otherwise
-//------------------------------------------------------------------------------
-bool Validate::getStatusOK() { return statusOK; }
+	// status ok on conversion ok or input is "0"
+	return (n || s.at(0) == '0');
+}
 

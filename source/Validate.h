@@ -9,13 +9,12 @@
 class Validate {
 private:
 	// member variables go here
-	bool statusOK;
+	bool conversionOK;
 
 public:
 	// constructor, destructor, member functions go here
 	Validate();
-	int getValidatedInt();
-	bool getStatusOK();
+	bool getValidatedInt(int&);
 };
 #endif	// VALIDATE_H
 

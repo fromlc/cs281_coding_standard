@@ -130,7 +130,14 @@ bool IsOldEnough(int user_age) {
 //------------------------------------------------------------------------------
 int getAge() {
 	cout << "How old are you? ";
-	return g_v.getValidatedInt();
+
+	int age;
+	while (!g_v.getValidatedInt(age)) {
+		cout << "Please enter your age as a number: ";
+	}
+
+	return age;
+
 }
 
 //------------------------------------------------------------------------------
