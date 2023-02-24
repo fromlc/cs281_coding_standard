@@ -18,6 +18,7 @@ public:
 	// constructor, destructor, member functions go here
 	Validate();
 	bool getValidatedInt(int&);
+	bool wasConversionOK() const;
 };
 #endif	// VALIDATE_H
 

@@ -18,7 +18,7 @@ using std::string;
 //------------------------------------------------------------------------------
 // constructor
 //------------------------------------------------------------------------------
-Validate::Validate() { }
+Validate::Validate() { conversionOK = true; }
 
 //------------------------------------------------------------------------------
 // - stores numeric input value in reference param, or 0 on failed conversion
@@ -33,6 +33,12 @@ bool Validate::getValidatedInt(int& n) {
 	n = (int) strtol(s.c_str(), nullptr, 0);
 
 	// status ok on conversion ok or input is "0"
-	return (n || s.at(0) == '0');
+	conversionOK = (n || !s.compare("0"));
+	return conversionOK;
 }
+
+//------------------------------------------------------------------------------
+// - returns true if last conversion to number succeeded, false otherwise
+//------------------------------------------------------------------------------
+bool Validate::wasConversionOK() const { return conversionOK; }
 
