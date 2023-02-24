@@ -48,7 +48,7 @@ Validate g_v;
 void initApp();
 void getName(string&);
 int getAge();
-bool IsOldEnough(int);				// just use the parameter type
+bool isOldEnough(int);				// just use the parameter type
 void displayResults(string&, int);	// pass strings by reference when possible
 
 // Use block comments like this to explain the code:
@@ -117,13 +117,7 @@ void getName(string& name) {
 //------------------------------------------------------------------------------
 // returns true if passed user_age is at least MINIMUM_AGE, false otherwise.
 //------------------------------------------------------------------------------
-bool IsOldEnough(int user_age) {
-
-    if (user_age >= MINIMUM_AGE)
-        return true;
-
-    return false;
-}
+bool isOldEnough(int user_age) { return (user_age >= MINIMUM_AGE); }
 
 //------------------------------------------------------------------------------
 // returns validated positive int
@@ -149,13 +143,13 @@ void displayResults(string& name, int age) {
     cout << "\nHi " << name << ", you're ";
 
     // Display whether user is allowed to participate..
-    if (age <= 0) {
+    if (age < 0) {
         cout << "unborn! Sorry, the unborn can't ";
     }
     else {
         cout << age << " years old.\n";
 
-        if (IsOldEnough(age)) {
+        if (isOldEnough(age)) {
             cout << "Congratulations! You're old enough to ";
         }
         else {
