@@ -77,8 +77,8 @@ void displayResults(string&, int);	// pass strings by reference when possible
 //------------------------------------------------------------------------------
 // entry point
 //------------------------------------------------------------------------------
-int main() {
-
+int main()
+{
     // display banner, do any needed initialization
     initApp();
 
@@ -102,14 +102,16 @@ int main() {
 //------------------------------------------------------------------------------
 // app initialization tasks
 //------------------------------------------------------------------------------
-void initApp() {
+void initApp()
+{
     cout << "\nAre you old enough to " << ACTIVITY_STR << "?\n";
 }
 
 //------------------------------------------------------------------------------
 // returns user's one-word name in reference parameter name
 //------------------------------------------------------------------------------
-void getName(string& name) {
+void getName(string& name) 
+{
     cout << "\nWhat's your name? ";
     cin >> name;
 }
@@ -122,37 +124,42 @@ bool isOldEnough(int user_age) { return (user_age >= MINIMUM_AGE); }
 //------------------------------------------------------------------------------
 // returns validated positive int
 //------------------------------------------------------------------------------
-int getAge() {
+int getAge() 
+{
     cout << "How old are you? ";
 
     int age;
-    while (!g_v.getValidatedInt(age)) {
+    while (!g_v.getValidatedInt(age)) 
+    {
         cout << "Please enter your age as a number: ";
     }
 
     return age;
-
 }
 
 //------------------------------------------------------------------------------
 // app output
 //------------------------------------------------------------------------------
-void displayResults(string& name, int age) {
-
+void displayResults(string& name, int age) 
+{
     // Display user's reported name and age
     cout << "\nHi " << name << ", you're ";
 
     // Display whether user is allowed to participate..
-    if (age < 0) {
+    if (age < 0) 
+    {
         cout << "unborn! Sorry, the unborn can't ";
     }
-    else {
+    else 
+    {
         cout << age << " years old.\n";
 
-        if (isOldEnough(age)) {
+        if (isOldEnough(age)) 
+        {
             cout << "Congratulations! You're old enough to ";
         }
-        else {
+        else 
+        {
             cout << "Sorry! You're not old enough to ";
         }
     }

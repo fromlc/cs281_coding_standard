@@ -24,8 +24,8 @@ Validate::Validate() { conversionOK = true; }
 // - stores numeric input value in reference param, or 0 on failed conversion
 // - returns true on numeric input, false otherwise
 //------------------------------------------------------------------------------
-bool Validate::getValidatedInt(int& n) {
-
+bool Validate::getValidatedInt(int& n)
+{
 	string s;
 	cin >> s;
 
